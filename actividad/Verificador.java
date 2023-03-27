@@ -1,30 +1,15 @@
-package actividad;
+package actividad1;
 import java.util.ArrayList;
 public class Verificador {
 
 	public static boolean esSobrePos(Rectangulo r1, Rectangulo r2) {
-		
-		double inicioX,finX;
-		if(r1.getEsquina1().getX() < r1.getEsquina2().getX()) {
-			inicioX =  r1.getEsquina1().getX();
-			finX = r1.getEsquina2().getX();
-		}
-		else {
-			inicioX =  r1.getEsquina2().getX();
-			finX = r1.getEsquina1().getX();
-		}
-		double inicioY,finY;
-		if(r1.getEsquina1().getY()<r1.getEsquina2().getY()) {
-			inicioY = r1.getEsquina1().getY();
-			finY = r1.getEsquina2().getY();
-		}
-		else {
-			inicioY = r1.getEsquina2().getY();
-			finY = r1.getEsquina1().getY();
-		}
+		double inicioX = r1.getEsquina1().menorX(r1.getEsquina2());
+		double finX = r1.getEsquina1().mayorX(r1.getEsquina2());
+		double inicioY = r1.getEsquina1().menorY(r1.getEsquina2());
+		double finY = r1.getEsquina1().mayorY(r1.getEsquina2());
 
 		ArrayList<Coordenada> arrTodoMenosContR1 = new ArrayList<Coordenada>();
-		for(double x = inicioX + 0.1; x <= finX - 0.1 ; x = x + 0.1 ) {
+		for(double x = inicioX+0.1; x <= finX-0.1 ; x = x + 0.1 ) {
 			for(double y = inicioY+0.1; y <= finY-0.1 ; y = y + 0.1  ) {
 				double n1,n2;
 				n1 = Math.round(x * 100.0)/100.0;
@@ -33,7 +18,7 @@ public class Verificador {
 				arrTodoMenosContR1.add(cordAdd);
 			}
 		}
-		for(int i = 0 ; i < arrTodoMenosContR1.size(); i++) {
+		for(int i = 0 ; i < arrTodoMenosContR1.size();i++) {
 			if ((r2.getEsquina1().equals(arrTodoMenosContR1.get(i)) )
 					|| r2.getEsquina2().equals(arrTodoMenosContR1.get(i))
 					|| r2.getEsquina3().equals(arrTodoMenosContR1.get(i))
@@ -42,25 +27,11 @@ public class Verificador {
 			}
 		}
 
-		double inicioR2X,finR2X;
-		if(r2.getEsquina1().getX()<r2.getEsquina2().getX()) {
-			inicioR2X = r2.getEsquina1().getX();
-			finR2X = r2.getEsquina2().getX();
-		}
-		else {
-			inicioR2X =  r2.getEsquina2().getX();
-			finR2X = r2.getEsquina1().getX();
-		}
-		double inicioR2Y,finR2Y;
-		if(r2.getEsquina1().getY()<r2.getEsquina2().getY()) {
-			inicioR2Y =  r2.getEsquina1().getY();
-			finR2Y = r2.getEsquina2().getY();
-		}
-		else {
-			inicioR2Y =  r2.getEsquina2().getY();
-			finR2Y = r2.getEsquina1().getY();
-		}
-
+		double inicioR2X = r2.getEsquina1().menorX(r2.getEsquina2());
+		double finR2X = r2.getEsquina1().mayorX(r2.getEsquina2());
+		double inicioR2Y = r2.getEsquina1().menorY(r2.getEsquina2());
+		double finR2Y = r2.getEsquina1().mayorY(r2.getEsquina2());
+		
 		ArrayList<Coordenada> arrTodoMenosContR2 = new ArrayList<Coordenada>();
 		for(double x = inicioR2X+0.1; x <= finR2X-0.1 ; x = x + 0.1 ) {
 			for(double y = inicioR2Y+0.1; y <= finR2Y-0.1 ; y = y + 0.1  ) {
@@ -81,26 +52,13 @@ public class Verificador {
 		}
 		return false;
 	}
+	
 	public static boolean esJunto(Rectangulo r1, Rectangulo r2) {
-		double inicioX,finX;
-		if(r1.getEsquina1().getX()<r1.getEsquina2().getX()) {
-			inicioX = r1.getEsquina1().getX();
-			finX = r1.getEsquina2().getX();
-		}
-		else {
-			inicioX =  r1.getEsquina2().getX();
-			finX = r1.getEsquina1().getX();
-		}
-		double inicioY,finY;
-		if(r1.getEsquina1().getY()<r1.getEsquina2().getY()) {
-			inicioY = r1.getEsquina1().getY();
-			finY = r1.getEsquina2().getY();
-		}
-		else {
-			inicioY =  r1.getEsquina2().getY();
-			finY = r1.getEsquina1().getY();
-		}
-		
+		double inicioX = r1.getEsquina1().menorX(r1.getEsquina2());
+		double finX = r1.getEsquina1().mayorX(r1.getEsquina2());
+		double inicioY = r1.getEsquina1().menorY(r1.getEsquina2());
+		double finY = r1.getEsquina1().mayorY(r1.getEsquina2());
+
 		ArrayList<Coordenada> arrContorno = new ArrayList<Coordenada>();
 		
 		for(double x = inicioX; x <= finX + 0.1 ; x = x + 0.1  ) {
@@ -128,24 +86,12 @@ public class Verificador {
 				return true;
 			}
 		}
-		double inicioR2X,finR2X;
-		if(r2.getEsquina1().getX()<r2.getEsquina2().getX()) {
-			inicioR2X =  r2.getEsquina1().getX();
-			finR2X = r2.getEsquina2().getX();
-		}
-		else {
-			inicioR2X =  r2.getEsquina2().getX();
-			finR2X = r2.getEsquina1().getX();
-		}
-        double inicioR2Y,finR2Y;
-		if(r2.getEsquina1().getY()<r2.getEsquina2().getY()) {
-			inicioR2Y =  r2.getEsquina1().getY();
-			finR2Y = r2.getEsquina2().getY();
-		}
-		else {
-			inicioR2Y = r2.getEsquina2().getY();
-			finR2Y = r2.getEsquina1().getY();
-		}
+		
+		double inicioR2X = r2.getEsquina1().menorX(r2.getEsquina2());
+		double finR2X = r2.getEsquina1().mayorX(r2.getEsquina2());
+		double inicioR2Y = r2.getEsquina1().menorY(r2.getEsquina2());
+		double finR2Y = r2.getEsquina1().mayorY(r2.getEsquina2());
+
 		ArrayList<Coordenada> arrContornoR2 = new ArrayList<Coordenada>();
 		
 		for(double x = inicioR2X; x <= finR2X + 0.1 ; x = x + 0.1  ) {
@@ -176,25 +122,13 @@ public class Verificador {
 		return false;
 	}
 	public static boolean esDisjunto(Rectangulo r1, Rectangulo r2) {
-		ArrayList<Coordenada> cordR1 = new ArrayList<Coordenada>();
-		double inicioR1X,finR1X,inicioR1Y,finR1Y;
-		if(r1.getEsquina1().getX()<r1.getEsquina2().getX()) {
-			inicioR1X = r1.getEsquina1().getX();
-			finR1X = r1.getEsquina2().getX();
-		}
-		else {
-			inicioR1X = r1.getEsquina2().getX();
-			finR1X = r1.getEsquina1().getX();
-		}
-		if(r1.getEsquina1().getY()<r1.getEsquina2().getY()) {
-			inicioR1Y = r1.getEsquina1().getY();
-			finR1Y = r1.getEsquina2().getY();
-		}
-		else {
-			inicioR1Y = r1.getEsquina2().getY();
-			finR1Y = r1.getEsquina1().getY();
-		}
 
+		double inicioR1X = r1.getEsquina1().menorX(r1.getEsquina2());
+		double finR1X = r1.getEsquina1().mayorX(r1.getEsquina2());
+		double inicioR1Y = r1.getEsquina1().menorY(r1.getEsquina2());
+		double finR1Y = r1.getEsquina1().mayorY(r1.getEsquina2());
+		
+		ArrayList<Coordenada> cordR1 = new ArrayList<Coordenada>();
 		for(double x = inicioR1X; x <= finR1X+0.1; x = x + 0.1) {
 			for(double y = inicioR1Y; y <= finR1Y + 0.1; y = y + 0.1) {
 				double n1,n2;
@@ -204,24 +138,13 @@ public class Verificador {
 			}
 		}
 		
+		double inicioR2X = r2.getEsquina1().menorX(r2.getEsquina2());
+		double finR2X = r2.getEsquina1().mayorX(r2.getEsquina2());
+		double inicioR2Y = r2.getEsquina1().menorY(r2.getEsquina2());
+		double finR2Y = r2.getEsquina1().mayorY(r2.getEsquina2());
+		
 		ArrayList<Coordenada> cordR2 = new ArrayList<Coordenada>();
-		double inicioR2X,finR2X,inicioR2Y,finR2Y;
-		if(r2.getEsquina1().getX()<r2.getEsquina2().getX()) {
-			inicioR2X =  r2.getEsquina1().getX();
-			finR2X = r2.getEsquina2().getX();
-		}
-		else {
-			inicioR2X =  r2.getEsquina2().getX();
-			finR2X = r2.getEsquina1().getX();
-		}
-		if(r2.getEsquina1().getY()<r2.getEsquina2().getY()) {
-			inicioR2Y =  r2.getEsquina1().getY();
-			finR2Y = r2.getEsquina2().getY();
-		}
-		else {
-			inicioR2Y = r2.getEsquina2().getY();
-			finR2Y = r2.getEsquina1().getY();
-		}
+		
 		for(double x = inicioR2X; x <= finR2X+0.1; x = x + 0.1) {
 			for(double y = inicioR2Y; y <= finR2Y+0.1; y = y +0.1) {
 				double n1,n2;

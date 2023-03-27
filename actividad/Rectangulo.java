@@ -1,4 +1,4 @@
-package actividad;
+package actividad1;
 
 public class Rectangulo {
 	private Coordenada esquina1;
@@ -9,7 +9,7 @@ public class Rectangulo {
 	private double altura; 
 
 	
-	public Rectangulo(Coordenada c1, Coordenada c2) throws NoDiagonal, DiagonalDeCuadrado {
+	public Rectangulo(Coordenada c1, Coordenada c2) throws NoDiagonal {
 		if ((c1.getX()!= c2.getX())&& 
 				(c1.getY()!= c2.getY())) 
 		{
@@ -17,23 +17,10 @@ public class Rectangulo {
 			Coordenada c4 = new Coordenada(c2.getX(),c1.getY());
 			this.base = Math.abs(c4.getX()-c1.getX());
 			this.altura = Math.abs(c3.getY()-c1.getY());
-			//System.out.println("Base: "+base+"\nAltura: "+altura);
 			this.esquina1 = c1;
 			this.esquina2 = c2;
 			this.esquina3 = c3;
 			this.esquina4 = c4;
-			/*
-			if(altura != base) {
-				this.esquina1 = c1;
-				this.esquina2 = c2;
-				this.esquina3 = c3;
-				this.esquina4 = c4;
-			}
-
-			else {
-				throw new DiagonalDeCuadrado();
-			}
-*/
 		}
 		else {
 			throw new NoDiagonal();
@@ -53,7 +40,6 @@ public class Rectangulo {
 	public Coordenada getEsquina2() {
 		return this.esquina2;
 	}
-	
 	
 	public Coordenada getEsquina3() {
 		return esquina3;
@@ -75,7 +61,6 @@ public class Rectangulo {
 		return this.base*this.altura;
 	}
 	
-
 	@Override
 	public String toString() {
 		return "Rectangulo \nEsquina N1: "+this.esquina1+"\nEsquina N2: "+this.esquina2+

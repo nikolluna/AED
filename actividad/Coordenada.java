@@ -1,6 +1,5 @@
-package actividad;
+package actividad1;
 
-import java.util.Objects;
 
 public class Coordenada {
 	
@@ -56,7 +55,42 @@ public class Coordenada {
 		}
 		return false;
 	}
+	
+	public double mayorX(Coordenada c2) {
+		if(this.x > c2.getX()) {
+			return this.x;
+		}
+		else {
+			return c2.getX();
+		}		
+	}
+	
+	public double menorX(Coordenada c2) {
+		if(this.x < c2.getX()) {
+			return this.x;
+		}
+		else {
+			return c2.getX();
+		}		
+	}
 
+	public double mayorY(Coordenada c2) {
+		if(this.y > c2.getY()) {
+			return this.y;
+		}
+		else {
+			return c2.getY();
+		}		
+	}
+	
+	public double menorY(Coordenada c2) {
+		if(this.y < c2.getY()) {
+			return this.y;
+		}
+		else {
+			return c2.getY();
+		}		
+	}
 	@Override
 	public String toString() {
 		return "(" + x + "," + y + ")";

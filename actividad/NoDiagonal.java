@@ -1,4 +1,4 @@
-package actividad;
+package actividad1;
 
 public class NoDiagonal extends Exception {
 	public NoDiagonal() {
